@@ -8,15 +8,25 @@ import {
   RadioGroup,
 } from '@mui/material';
 
+type RadioBoxOptionProps = {
+  id: string;
+  value: string;
+};
+
 type RadioBoxProps = {
-  data: any;
+  name: string;
+  label: string;
+  options: RadioBoxOptionProps[];
   handleRadioChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
-const RadioBox = ({ data, handleRadioChange }: RadioBoxProps) => {
-  const { name, options, label } = data;
-
-  const radioOptions = options.map(({ id, value }: any) => {
+const RadioBox = ({
+  name,
+  options,
+  label,
+  handleRadioChange,
+}: RadioBoxProps) => {
+  const radioOptions = options.map(({ id, value }: RadioBoxOptionProps) => {
     return (
       <FormControlLabel
         key={id}
@@ -28,15 +38,17 @@ const RadioBox = ({ data, handleRadioChange }: RadioBoxProps) => {
   });
 
   return (
-    <FormControl component='fieldset'>
-      <p className='radioTitle'>{label}</p>
-      <Field as={RadioGroup} name={name}>
-        {radioOptions}
-      </Field>
-      <FormHelperText>
-        <ErrorMessage component='div' className='radioError' name={name} />
-      </FormHelperText>
-    </FormControl>
+    <div className='sectionBox'>
+      <FormControl component='fieldset'>
+        <p className='sectionLabel'>{label}</p>
+        <Field as={RadioGroup} name={name}>
+          {radioOptions}
+        </Field>
+        <FormHelperText>
+          <ErrorMessage component='div' className='errorText' name={name} />
+        </FormHelperText>
+      </FormControl>
+    </div>
   );
 };
 

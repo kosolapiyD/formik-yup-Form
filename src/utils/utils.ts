@@ -4,8 +4,8 @@ import { data } from '../mock/data';
 const entries = Object.entries(data);
 export const initialValues = entries.reduce((acc, [key, value]) => {
   const fields = value as any;
-  if (Array.isArray(fields)) {
-    fields.forEach((item: any) => {
+  if (key === 'personalDataSection') {
+    fields.textFields.forEach((item: any) => {
       acc[item.name] = '';
     });
   } else {
@@ -13,6 +13,8 @@ export const initialValues = entries.reduce((acc, [key, value]) => {
   }
   return acc;
 }, {} as any);
+
+console.log('initialValues', initialValues);
 
 export const validationSchema = () => {
   const schema = {} as any;

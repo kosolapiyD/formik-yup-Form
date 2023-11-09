@@ -4,15 +4,33 @@
 }
 
 #root {
-  max-width : 1000px;
-  margin    : 0 auto;
-  padding   : 1rem;
-  box-sizing: border-box;
-  border    : 1px solid #646cff;
+  max-width    : 1000px;
+  margin       : 0 auto;
+  padding      : 0 1rem;
+  box-sizing   : border-box;
+  border       : 1px solid #646cff;
+  border-radius: 8px;
 }
 
 .formTitle {
   text-align: center;
   margin    : 0;
   padding   : 0;
+}
+
+.sectionBox {
+  padding      : 1rem;
+  margin       : 1rem 0;
+  border       : 1px solid #cdd0ff;
+  border-radius: 5px;
+}
+
+.fieldsBox {
+  display          : flex;
+  /* flex-direction: column; */
+  margin           : 1rem 0;
+}
+
+.errorText {
+  color: #d32f2f;
 }

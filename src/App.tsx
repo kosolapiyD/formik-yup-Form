@@ -4,21 +4,17 @@ import { initialValues, validationSchema } from './utils/utils';
 import './App.css';
 import TextBox from './components/text-box/TextBox';
 
-import { useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 import ButtonBox from './components/button-box/ButtonBox';
 import RadioBox from './components/radio-box/RadioBox';
 import { data } from './mock/data';
 
 const App = () => {
-  const { textFields, radioSectionA } = data;
-
-  const textFieldsList = textFields.map((item) => (
-    <TextBox key={item.id} {...item} />
-  ));
+  const { personalDataSection, radioSectionA } = data;
 
   const [radioBtnValue, setRadioBtnValue] = useState('');
-  const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setRadioBtnValue((event.target as HTMLInputElement).value);
+  const handleRadioChange = ({ target }: ChangeEvent<HTMLInputElement>) => {
+    setRadioBtnValue((target as HTMLInputElement).value);
   };
 
   const onSubmit = (values: any, props: any) => {
@@ -44,9 +40,10 @@ const App = () => {
         >
           {(props) => (
             <Form>
-              {textFieldsList}
+              {/* {textFieldsList} */}
+              <TextBox {...personalDataSection} />
               <RadioBox
-                data={radioSectionA}
+                {...radioSectionA}
                 handleRadioChange={handleRadioChange}
               />
               <ButtonBox {...props} />
