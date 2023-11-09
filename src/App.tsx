@@ -4,14 +4,12 @@ import { initialValues, validationSchema } from './utils/utils';
 import './App.css';
 import TextBox from './components/text-box/TextBox';
 
-import { Button } from '@mui/material';
 import { useState } from 'react';
+import ButtonBox from './components/button-box/ButtonBox';
 import RadioBox from './components/radio-box/RadioBox';
 import { data } from './mock/data';
 
 const App = () => {
-  console.log('data', data);
-
   const { textFields, radioSectionA } = data;
 
   const textFieldsList = textFields.map((item) => (
@@ -51,16 +49,7 @@ const App = () => {
                 data={radioSectionA}
                 handleRadioChange={handleRadioChange}
               />
-              <div className='buttonBox'>
-                <Button
-                  type='submit'
-                  variant='contained'
-                  disabled={props.isSubmitting}
-                  onClick={() => {}}
-                >
-                  {props.isSubmitting ? 'Loading' : 'Submit'}
-                </Button>
-              </div>
+              <ButtonBox {...props} />
             </Form>
           )}
         </Formik>
