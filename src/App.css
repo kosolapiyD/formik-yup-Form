@@ -1,0 +1,18 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+
+}
+
+#root {
+  max-width : 1000px;
+  margin    : 0 auto;
+  padding   : 1rem;
+  box-sizing: border-box;
+  border    : 1px solid #646cff;
+}
+
+.formTitle {
+  text-align: center;
+  margin    : 0;
+  padding   : 0;
+}
