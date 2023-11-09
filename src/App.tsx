@@ -1,57 +1,18 @@
-import { Formik, Form } from 'formik';
-import * as Yup from 'yup';
+import { Form, Formik } from 'formik';
+import { initialValues, validationSchema } from './utils/utils';
 
 import './App.css';
 import TextBox from './components/text-box/TextBox';
 
-import { data } from './mock/data';
 import { Button } from '@mui/material';
-import RadioBox from './components/radio-box/RadioBox';
 import { useState } from 'react';
+import RadioBox from './components/radio-box/RadioBox';
+import { data } from './mock/data';
 
 const App = () => {
   console.log('data', data);
 
   const { textFields, radioSectionA } = data;
-
-  // default initial values as empty string
-  const entries = Object.entries(data);
-  const initialValues = entries.reduce((acc, [key, value]) => {
-    const fields = value as any;
-    if (Array.isArray(fields)) {
-      fields.forEach((item: any) => {
-        acc[item.name] = '';
-      });
-    } else {
-      acc[key] = '';
-    }
-    return acc;
-  }, {} as any);
-
-  console.log('initialValues :>> ', initialValues);
-
-  // iterate initial values and create dynamic validation schema
-  const validationSchema = () => {
-    const schema = {} as any;
-    Object.keys(initialValues).forEach((key: string) => {
-      switch (key) {
-        case 'fullName':
-          return (schema[key] = Yup.string()
-            .min(3, "It's too short")
-            .required('Required field'));
-        case 'email':
-          return (schema[key] = Yup.string()
-            .email('Enter valid email')
-            .required('Required field'));
-        case 'anotherPhone':
-          return;
-
-        default:
-          return (schema[key] = Yup.string().required('Required field'));
-      }
-    });
-    return Yup.object().shape(schema);
-  };
 
   const textFieldsList = textFields.map((item) => (
     <TextBox key={item.id} {...item} />
