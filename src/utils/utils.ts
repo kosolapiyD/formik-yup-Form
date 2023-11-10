@@ -14,7 +14,7 @@ export const initialValues = entries.reduce((acc, [key, value]) => {
   return acc;
 }, {} as any);
 
-console.log('initialValues', initialValues);
+// console.log('initialValues', initialValues);
 
 export const validationSchema = () => {
   const schema = {} as any;

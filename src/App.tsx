@@ -1,16 +1,17 @@
 import { Form, Formik } from 'formik';
+import { ChangeEvent, useState } from 'react';
+import { data } from './mock/data';
 import { initialValues, validationSchema } from './utils/utils';
 
 import './App.css';
+
+import ButtonBox from './components/button-box/ButtonBox';
+import FormTitle from './components/form-title/FormTitle';
+import RadioBox from './components/radio-box/RadioBox';
 import TextBox from './components/text-box/TextBox';
 
-import { ChangeEvent, useState } from 'react';
-import ButtonBox from './components/button-box/ButtonBox';
-import RadioBox from './components/radio-box/RadioBox';
-import { data } from './mock/data';
-
 const App = () => {
-  const { personalDataSection, radioSectionA } = data;
+  const { personalDataSection, radioSectionA, radioSectionB } = data;
 
   const [radioBtnValue, setRadioBtnValue] = useState('');
   const handleRadioChange = ({ target }: ChangeEvent<HTMLInputElement>) => {
@@ -29,9 +30,7 @@ const App = () => {
 
   return (
     <div className='container'>
-      <div className='formTitle'>
-        <h2>Formik & Yup Form</h2>
-      </div>
+      <FormTitle />
       <div className='formContainer'>
         <Formik
           initialValues={initialValues}
@@ -40,10 +39,13 @@ const App = () => {
         >
           {(props) => (
             <Form>
-              {/* {textFieldsList} */}
               <TextBox {...personalDataSection} />
               <RadioBox
                 {...radioSectionA}
+                handleRadioChange={handleRadioChange}
+              />
+              <RadioBox
+                {...radioSectionB}
                 handleRadioChange={handleRadioChange}
               />
               <ButtonBox {...props} />

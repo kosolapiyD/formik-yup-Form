@@ -18,11 +18,12 @@ const TextBox = ({ label, textFields }: TextBoxData) => {
       <p className='sectionLabel'>{label}</p>
       {textFields.map(({ id, name, label }: TextBoxProps) => (
         <div key={id} className='fieldsBox'>
-          <p className='label'>{label}</p>
           <Field
             as={TextField}
             name={name}
             size='small'
+            // variant='standard'
+            label={label}
             helperText={
               <ErrorMessage component='div' className='errorText' name={name} />
             }
